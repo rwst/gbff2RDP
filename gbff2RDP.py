@@ -49,8 +49,6 @@ def insert_data(rec, tax, taxtree):
     rec.description = str(node).split("'")[1][1:]
 
 arg = argv[1]
-Entrez.email = "ralf@ark.in-berlin.de"
-Entrez.api_key = '788bafaf966e618652a65887a6314f458a08'
 run(['seqret', arg, 'tmp.fa'])
 rdict = SeqIO.to_dict(SeqIO.parse('tmp.fa', 'fasta'))
 hdl = open(arg, 'r')
@@ -107,8 +105,6 @@ def fill_rankmap():
     new_taxa = children.difference(rankmap.keys())
     if new_taxa is None or len(new_taxa) == 0:
         return
-    print(new_taxa)
-    return
     print('Querying Entrez for {} new taxa...'.format(len(new_taxa)))
     ids = []
     for t in new_taxa:
